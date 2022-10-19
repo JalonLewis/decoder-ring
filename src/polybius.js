@@ -5,6 +5,8 @@
 
 const polybiusModule = (function () {
   // you can add any code you want within this function scope
+
+  //object containing the coresponding number pair for each letter input
   const encoder = {
     a: "11",
     b: "21",
@@ -33,6 +35,8 @@ const polybiusModule = (function () {
     y: "45",
     z: "55",
   };
+
+  //object containing the coresponding letter for each number pair input
   const decoder = {
     11: "a",
     21: "b",
@@ -62,7 +66,7 @@ const polybiusModule = (function () {
   };
 
   function polybius(input, encode = true) {
-    //checks if input message should be encoded or decoded
+    //checks if cihper should use the encoder or decoder object
     const cipher = encode ? encoder : decoder;
     //initialize final result array
     let output = [];
@@ -82,12 +86,14 @@ const polybiusModule = (function () {
         formattedEncodeInput.push(input[i].toLowerCase());
       }
     }
-
+    //encode block
     if (encode) {
       for (let i = 0; i < formattedEncodeInput.length; i++) {
+        //pushes spaces to the output array
         if (formattedEncodeInput[i] === " ") {
           output.push(" ");
         } else {
+          //pushes the matching numbers to the output for the matching letters in the input
           const cipherKeys = Object.keys(cipher);
           const cipherValues = Object.values(cipher);
           for (letter in cipherKeys) {
@@ -98,12 +104,17 @@ const polybiusModule = (function () {
         }
       }
     } else {
+      //encode block
+
+      //checks to see if the input contains an even amount of numbers
       const inputWithoutSpaces = input.split(" ").join("");
       if (inputWithoutSpaces.length % 2 != 0) return false;
       for (let i = 0; i < formattedDecodeInput.length; i++) {
+        //pushes spaces to the output array
         if (formattedDecodeInput[i] === " ") {
           output.push(" ");
         } else {
+          //pushes the matching letters to the output for the matching numbers in the input
           const cipherKeys = Object.keys(cipher);
           const cipherValues = Object.values(cipher);
           for (index in cipherKeys) {
@@ -114,7 +125,7 @@ const polybiusModule = (function () {
         }
       }
     }
-
+    //returns the output array using .join to turn it into one string
     return output.join("");
   }
 

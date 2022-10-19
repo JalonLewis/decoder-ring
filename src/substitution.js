@@ -5,6 +5,8 @@
 
 const substitutionModule = (function () {
   // you can add any code you want within this function scope
+
+  //create an array that contains the original alphabet
   let ogAlphabet = [
     "a",
     "b",
@@ -35,31 +37,39 @@ const substitutionModule = (function () {
   ];
 
   function substitution(input, alphabet, encode = true) {
+    //checks to see if new alphabet exists and contains exactly 26 unique characters
     if (!alphabet || alphabet.length != 26) return false;
     for (let i = 0; i < alphabet.length; i++) {
-      for (let j = i+1; j < alphabet.length; j++) {
+      for (let j = i + 1; j < alphabet.length; j++) {
         if (alphabet[i] === alphabet[j]) {
           return false;
         }
       }
     }
+    //initialize output array variable
     let output = [];
+    //encode block
     if (encode) {
       for (char in input) {
+        //pushes spaces to the output array
         if (input[char] === " ") {
           output.push(" ");
         }
+        //checks each input character and pushes the matching position of new alphabet to the output array
         for (let i = 0; i < alphabet.length; i++) {
           if (input[char] === ogAlphabet[i]) {
             output.push(alphabet[i]);
           }
         }
       }
+      //decode block
     } else {
       for (char in input) {
+        //pushes spaces to the output array
         if (input[char] === " ") {
           output.push(" ");
         }
+        //checks each input character and pushes the matching position of original alphabet to the output array
         for (let i = 0; i < alphabet.length; i++) {
           if (input[char] === alphabet[i]) {
             output.push(ogAlphabet[i]);
@@ -67,6 +77,7 @@ const substitutionModule = (function () {
         }
       }
     }
+    //returns the output array using .join to turn it into one string
     return output.join("");
   }
 
