@@ -6,7 +6,7 @@
 const polybiusModule = (function () {
   // you can add any code you want within this function scope
 
-  //object containing the coresponding number pair for each letter input
+  //object containing the corresponding number pair for each letter input
   const encoder = {
     a: "11",
     b: "21",
@@ -36,7 +36,7 @@ const polybiusModule = (function () {
     z: "55",
   };
 
-  //object containing the coresponding letter for each number pair input
+  //object containing the corresponding letter for each number pair input
   const decoder = {
     11: "a",
     21: "b",
