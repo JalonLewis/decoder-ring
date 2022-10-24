@@ -39,12 +39,9 @@ const substitutionModule = (function () {
   function substitution(input, alphabet, encode = true) {
     //checks to see if new alphabet exists and contains exactly 26 unique characters
     if (!alphabet || alphabet.length != 26) return false;
-    for (let i = 0; i < alphabet.length; i++) {
-      for (let j = i + 1; j < alphabet.length; j++) {
-        if (alphabet[i] === alphabet[j]) {
-          return false;
-        }
-      }
+    const unique = Array.from(new Set(alphabet));
+    if (unique.length != 26) {
+    return false;
     }
     //initialize output array variable
     let output = [];
